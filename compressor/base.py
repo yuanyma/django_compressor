@@ -228,6 +228,7 @@ class Compressor(object):
 
     def filter(self, content, method, **kwargs):
         for filter_cls in self.cached_filters:
+            print 'Looping through filter: %s' % filter_cls
             filter_func = getattr(
                 filter_cls(content, filter_type=self.type), method)
             try:

@@ -22,6 +22,8 @@ class CssAbsoluteFilter(FilterBase):
         self.has_scheme = False
 
     def input(self, filename=None, basename=None, **kwargs):
+        print 'In CssAbsoluteFilter.input'
+
         if filename is not None:
             filename = os.path.normcase(os.path.abspath(filename))
         if (not (filename and filename.startswith(self.root)) and
@@ -37,6 +39,14 @@ class CssAbsoluteFilter(FilterBase):
             self.protocol = '%s/' % '/'.join(parts[:2])
             self.host = parts[2]
         self.directory_name = '/'.join((self.url, os.path.dirname(self.path)))
+
+        print 'filename: %s' % filename
+        print 'filename.startswith(self.root): %s' % filename.startswith(self.root)
+        print 'self.find(basename): %s' % self.find(basename)
+        print 'self.path: %s' % self.path
+        print 'basename: %s' % basename
+        print 'self.directory_name: %s' % self.directory_name
+
         return SRC_PATTERN.sub(self.src_converter,
             URL_PATTERN.sub(self.url_converter, self.content))
 
