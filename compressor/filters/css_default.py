@@ -101,6 +101,7 @@ class CssAbsoluteFilter(FilterBase):
     def _converter(self, matchobj, group, template):
         url = matchobj.group(group)
         url = url.strip(' \'"')
+        print 'URL: %s' % url
         if url.startswith('#'):
             return "url('%s')" % url
         elif url.startswith(SCHEMES):
